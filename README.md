@@ -1,11 +1,11 @@
 # Hadoop-R System   
 
-The goal of this repository is to demostrate how to set up a Hadoop and R system from scratch. (Mac Version) 
+The goal of this repository is to demonstrate how to set up a Hadoop and R system from scratch. (Mac Version) 
 
 Things included:
 * Configuration of Hadoop and R
-* A few examples using Hadoop or R alone
-* A few examples with data sizes ranging from small to large using Hadoop and R at the same time
+* A few example using Hadoop or R alone
+* Run Hadoop and R at the same time
 
 
 ## Prerequisites: 
@@ -43,7 +43,7 @@ Test the key with
 $ ssh localhost 
 $ exit # to log out 
 ```
-so that you don't need to enter password when Hadoop establishes connection but you can creat a SSH with a password if you wish.
+so that you don't need to enter password when Hadoop establishes connection but you can create a SSH with a password if you wish.
 
 ## Hadoop Installation
 
@@ -51,10 +51,10 @@ Connect to localhost
 ```
 ssh localhost
 ```
-Download and install hadoop
+Download and install Hadoop
 ```
-brew install hadoop
-# brew installs hadoop within /usr/local/Cellar/hadoop/2.7.1/
+brew install Hadoop
+# brew installs Hadoop within /usr/local/Cellar/hadoop/2.7.1/
 ```
 
 If Hadoop is installed successfully you should something similar to 
@@ -68,19 +68,79 @@ From source with checksum fc0a1a23fc1868e4d5ee7fa2b28a58a
 ```
 
 ## Configuration 
-This is the configuration for single node hadoop setup. For more details you can visit [Hadoop Wiki](http://wiki.apache.org/hadoop/GettingStartedWithHadoop).
+This is the configuration for single node Hadoop setup. For more details you can visit [Hadoop Wiki](http://wiki.apache.org/hadoop/GettingStartedWithHadoop).
 
 ```
 cd /usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop
 ```
 to be in the setup directory. 
 
-In `hadoop-env.sh` We need to set the JAVA environment variable by changing to JAVA implemantation to:
+In `hadoop-env.sh` We need to set the JAVA environment variable by changing to JAVA implementation to:
 ```
 # The java implementation to use.
 export JAVA_HOME=`/usr/libexec/java_home`
 ```
 
+In `core-site.xml`, change the configuration into:
+```xml
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+```
 
+In `hdfs-site.xml`, change the configuration into:
+```xml
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+	</configuration>
+	```
 
+In `mapred-site.xml`, change the configuration into:
+```xml
+<configuration>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost:9000</value>
+  </property>
+</configuration>
+```
 
+### PATH
+It would be a good idea to also set the environment variables for
+Hadoop:
+```
+export = HADOOP_HOME=/usr/local/Cellar/hadoop/2.7.1
+export PATH=$PATH:$HADOOP_HOME/bin
+```
+
+## Execution 
+After we installed Hadoop we need to format Hadoop Distributed
+File System by
+```
+hadoop namenode -format
+```
+
+Start a daemon 
+```
+ssh localhost
+cd /usr/local/Cellar/hadoop/2.7.1
+./sbin/start-dfs.sh
+```
+
+You can look at the Namenode information at
+```
+http://localhost:50070/
+```
+from your browser. Or you can type `jps` to check the status of
+the namenode.
+
+Stop the daemon by
+```
+./sbin/stop-dfs.sh
+```
