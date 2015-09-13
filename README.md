@@ -99,7 +99,7 @@ In `hdfs-site.xml`, change the configuration into:
         <value>1</value>
     </property>
 	</configuration>
-	```
+```
 
 In `mapred-site.xml`, change the configuration into:
 ```xml
