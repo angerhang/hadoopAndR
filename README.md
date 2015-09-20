@@ -1,4 +1,4 @@
-# Hadoop-R System   
+# Hadoop-R System 
 
 The goal of this repository is to demonstrate how to set up a Hadoop and R system from scratch. (Mac Version) 
 
@@ -52,6 +52,11 @@ Connect to localhost
 ssh localhost
 ```
 Download and install Hadoop
+Install brew if you don't have it yet. We will use it to install R
+later on as well. 
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 ```
 brew install Hadoop
 # brew installs Hadoop within /usr/local/Cellar/hadoop/2.7.1/
@@ -78,7 +83,32 @@ to be in the setup directory.
 In `hadoop-env.sh` We need to set the JAVA environment variable by changing to JAVA implementation to:
 ```
 # The java implementation to use.
-export JAVA_HOME=`/usr/libexec/java_home`
+export JAVA_HOME=/usr/java/latest
+```
+
+After setting the environment variable, you should be able to see
+something similar:
+```shell
+$ bin/hadoop 
+Usage: hadoop [--config confdir] [COMMAND | CLASSNAME]
+  CLASSNAME            run the class named CLASSNAME
+ or
+  where COMMAND is one of:
+  fs                   run a generic filesystem user client
+  version              print the version
+  jar <jar>            run a jar file
+                       note: please  use "yarn jar" to launch
+                             YARN applications, not this command.
+  checknative [-a|-h]  check native hadoop and compression libraries availability
+  distcp <srcurl> <desturl> copy file or directories recursively
+  archive -archiveName NAME -p <parent path> <src>* <dest> create a hadoop archive
+  classpath            prints the class path needed to get the
+  credential           interact with credential providers
+                       Hadoop jar and the required libraries
+  daemonlog            get/set the log level for each daemon
+  trace                view and modify Hadoop tracing settings
+
+Most commands print help when invoked w/o parameters.
 ```
 
 In `core-site.xml`, change the configuration into:
@@ -144,3 +174,25 @@ Stop the daemon by
 ```
 ./sbin/stop-dfs.sh
 ```
+
+## R Installation
+### R Environment 
+Brew will handle the R dependency for you automatically.
+```
+brew tap homebrew/science
+brew install r
+```
+
+### R IDE
+You might find it helpful to download
+[R Studio](https://www.rstudio.com/products/rstudio/) for R development.
+ 
+### Miscellaneous
+If you are seeing a warning message like
+```
+15/09/20 15:05:05 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+```
+it means you have a 64-bit operating system but your hadoop version is
+32-bit. This shouldn't be a problem, but if you want to get rid of it,
+you should then try to get the 64-bit hadoop installation and redo all
+the steps above.
