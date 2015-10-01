@@ -19,13 +19,14 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 If you do have Brew, try
 ```
 brew update
-``
+```
 and 
 ```
 brew install thrift
 ```
 
 ### R packages
+
 ```
 install.packages(c("rJava", "Rcpp", "RJSONIO", "bitops", "digest", "functional", "stringr", "plyr", "reshape2", "caTools"))
 ```
@@ -36,6 +37,7 @@ Go to [Rhadoop](https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads)
 to download these three packages.
 
 Then we need to set the variables before we can install the packages:
+
 ```
 Sys.setenv(HADOOP_CMD="/usr/local/Cellar/hadoop/2.7.1/bin/hadoop")
 Sys.setenv(HADOOP_HOME="/usr/local/Cellar/hadoop/2.7.1") 
