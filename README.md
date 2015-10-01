@@ -7,6 +7,9 @@ Things included:
 * A few example using Hadoop or R alone
 * Run Hadoop and R at the same time
 
+## Caveat
+It is recommended to set up a new user account specially for Hadoop
+usage due to security concerns. 
 
 ## Prerequisites: 
 #### Java
@@ -15,7 +18,11 @@ Check your java version with
 ```
 java -version
 ```
-to make sure your java is at least 1.6.0. If not, go to System Preferences -> Java -> Update to get the latest version and reboot. (Warning: you might to need to uninstall the older Java after the update)
+to make sure your java is at least 1.6.0. If not, go to System
+Preferences -> Java -> Update to get the latest version and
+reboot. (Warning: you might to need to uninstall the older Java after
+the update). Idealy, it is better not to use Apple's built in Java
+since it isn't great for production. See more at [Apache Wiki](https://wiki.apache.org/hadoop/HadoopJavaVersions)
 
 #### HomeBrew 
 ```
@@ -83,7 +90,7 @@ to be in the setup directory.
 In `hadoop-env.sh` We need to set the JAVA environment variable by changing to JAVA implementation to:
 ```
 # The java implementation to use.
-export JAVA_HOME=/usr/java/latest
+export JAVA_HOME=/path/to/your/java
 ```
 
 After setting the environment variable, you should be able to see
