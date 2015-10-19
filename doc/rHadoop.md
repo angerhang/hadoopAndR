@@ -47,6 +47,13 @@ Sys.setenv(HADOOP_STREAMING="/usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop/s
 # Sys.getenv("HADOOP_CMD")
 ```
 
+Install required packages:
+
+```
+install.packages(c("rJava", "Rcpp", "RJSONIO", "bitops", "digest", "functional", "stringr", "plyr", "reshape2", "caTools"))
+
+```
+
 Then we can install the packages by
 ```
 install.packages("~/Desktop/rhbase_1.2.1.tar", repos = NULL, type="source")
