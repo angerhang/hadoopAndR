@@ -54,6 +54,12 @@ so that you don't need to enter password when Hadoop establishes connection but 
 
 ## Hadoop Installation
 
+### Downlaod Hadoop
+Go to
+[hadoop download for ubuntu 14.04](http://hadoop.apache.org/releases.html)
+to get the 2.6.0 binary file. Unzip it and place the folder into your
+`$HOME` directory.
+
 Connect to localhost
 ```
 ssh localhost
@@ -64,15 +70,11 @@ later on as well.
 ```
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
-```
-brew install Hadoop
-# brew installs Hadoop within /usr/local/Cellar/hadoop/2.7.1/
-```
 
 If Hadoop is installed successfully you should something similar to 
 ```  
 $ hadoop version
-Hadoop 2.7.1
+Hadoop 2.6.0
 Subversion https://git-wip-us.apache.org/repos/asf/hadoop.git -r 15ecc87ccf4a0228f35af08fc56de536e6ce657a
 Compiled by jenkins on 2015-06-29T06:04Z
 Compiled with protoc 2.5.0
@@ -83,7 +85,7 @@ From source with checksum fc0a1a23fc1868e4d5ee7fa2b28a58a
 This is the configuration for single node Hadoop setup. For more details you can visit [Hadoop Wiki](http://wiki.apache.org/hadoop/GettingStartedWithHadoop).
 
 ```
-cd /usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop
+cd ~/hadoop-2.6.0
 ```
 to be in the setup directory. 
 
@@ -134,8 +136,8 @@ In `hdfs-site.xml`, change the configuration into:
     <property>
         <name>dfs.replication</name>
         <value>1</value>
-    </property>
-	</configuration>
+	</property>
+</configuration>
 ```
 
 In `mapred-site.xml`, change the configuration into:
@@ -152,7 +154,7 @@ In `mapred-site.xml`, change the configuration into:
 It would be a good idea to also set the environment variables for
 Hadoop:
 ```
-export = HADOOP_HOME=/usr/local/Cellar/hadoop/2.7.1
+export = HADOOP_HOME=/usr/local/Cellar/hadoop/2.6.0
 export PATH=$PATH:$HADOOP_HOME/bin
 ```
 
@@ -166,7 +168,7 @@ hadoop namenode -format
 Start a daemon 
 ```
 ssh localhost
-cd /usr/local/Cellar/hadoop/2.7.1
+cd /usr/local/Cellar/hadoop/2.6.0
 ./sbin/start-dfs.sh
 ```
 

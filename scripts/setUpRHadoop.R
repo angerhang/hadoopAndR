@@ -1,9 +1,9 @@
 # This is to set up the hadoop environments in R 
 # You can omit the following part if you have run RHadoop before
-Sys.setenv("HADOOP_CMD"="/usr/local/Cellar/hadoop/2.7.1/bin/hadoop")
-Sys.setenv("HADOOP_STREAMING"="/usr/local/Cellar/hadoop/2.7.1/libexec/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar")
-Sys.setenv(HADOOP_HOME="/usr/local/Cellar/hadoop/2.7.1") 
-Sys.setenv(JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home") 
+Sys.setenv("HADOOP_CMD"="/Users/yuancalvin/hadoop-2.6.0/bin/hadoop")
+Sys.setenv("HADOOP_STREAMING"="/Users/yuancalvin/hadoop-2.6.0/share/hadoop/tools/lib/hadoop-streaming-2.6.0.jar")
+Sys.setenv(HADOOP_HOME="/Users/yuancalvin/hadoop-2.6.0") 
+Sys.setenv(JAVA_HOME="/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home")
 
 # Sys.getenv("HADOOP_CMD")
 # Sys.getenv("HADOOP_STREAMING")

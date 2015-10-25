@@ -7,7 +7,7 @@ We will go though an example of how to run MapReduce locally.
 You should be in the hadoop directory
 
 If you followed `README.me` for installation, then your hadoop should be
-installed in ```/usr/local/Cellar/hadoop/2.7.1```.
+installed in ```/usr/hadoop-2.6.0```.
 
 ### Starting the filesystem
 Basically namenode manages the meta-data about the datanode, by formatting the namenode,

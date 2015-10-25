@@ -1,8 +1,8 @@
 # Always need to set the enviroment before running rHadoop
-Sys.setenv("HADOOP_CMD"="/usr/local/Cellar/hadoop/2.7.1/bin/hadoop")
-Sys.setenv("HADOOP_STREAMING"="/usr/local/Cellar/hadoop/2.7.1/libexec/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar")
-Sys.setenv(HADOOP_HOME="/usr/local/Cellar/hadoop/2.7.1") 
-Sys.setenv(JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home") 
+Sys.setenv("HADOOP_CMD"="/Users/yuancalvin/hadoop-2.6.0/bin/hadoop")
+Sys.setenv("HADOOP_STREAMING"="/Users/yuancalvin/hadoop-2.6.0/share/hadoop/tools/lib/hadoop-streaming-2.6.0.jar")
+Sys.setenv(HADOOP_HOME="/Users/yuancalvin/hadoop-2.6.0") 
+Sys.setenv(JAVA_HOME="/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home")
 
 library(rhbase)
 library(rhdfs)
@@ -25,7 +25,11 @@ wordcount <- function(input, output=NULL){
 }
 
 # Set up data source from hdfs
-hdfs.root <- '/user/yuancalvin/city'
+hdfs.root <- '/user/hang'
 hdfs.data <- file.path(hdfs.root, 'data')
 hdfs.out <- file.path(hdfs.root, 'out')
 system.time(out <- wordcount(hdfs.data, hdfs.out))
+
+result <- from.dfs(out)
+results.df <- as.data.frame(result, stringsAsFactors = F)
+colnames(results.df) <- c('word', 'count')

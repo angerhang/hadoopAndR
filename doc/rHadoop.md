@@ -19,6 +19,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 If you do have Brew, try
 ```
 brew update
+brew doctor #to resolve any errors
 ```
 and 
 ```
